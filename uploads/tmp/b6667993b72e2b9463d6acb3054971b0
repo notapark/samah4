@@ -1,0 +1,34 @@
+
+CREATE TABLE TB_USER(
+   user_id int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+	ID NOT NULL VARCHAR(30) COMMENT '아이디',
+	password varchar(20) not null COMMENT '비밀번호',
+	name NOT NULL varchar(30) COMMENT '이름',
+	email varchar(50) not null COMMENT '이메일',
+	address varchar(300) COMMENT '주소',
+	ZIP_CODE varchar(10) COMMENT '우편번호',
+	tel varchar(14) COMMENT '전화번호',
+	REG_DATE DATETIME NOT NULL COMMENT '가입일',
+	MOD_DATE DATETIME NOT NULL COMMENT '개인정보수정일'
+);
+
+
+CREATE TABLE TB_BOARD (
+  board_id int(10) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  board_pid int(10) NULL DEFAULT 0 COMMENT '원글 번호',
+  user_id varchar(20) NOT NULL COMMENT '작성자ID',
+  user_name varchar(20) NOT NULL COMMENT '작성자 이름',
+  subject varchar(100) NOT NULL COMMENT '게시글 제목',
+  contents text NOT NULL COMMENT '게시글 내용',
+  hits int(10) NOT NULL DEFAULT 0 COMMENT '조회수',
+  reg_date datetime NOT NULL COMMENT '등록일'
+);
+
+CREATE TABLE TB_FILE (
+  board_id int(10) NOT NULL,
+  SEQ int(10) NOT NULL,
+  FILE_NAME VARCHAR(100) NOT NULL COMMNET '오리지널파일명',
+  ENC_FILE_NAME VARCHAR(200) NOT NULL COMMNT '저장 파일명',
+  FILE_PATH VARCHAR(200) NOT NULL COMMNT '파일 저장경로',
+   INDEX IDX_FILE_01 (board_id)
+);
